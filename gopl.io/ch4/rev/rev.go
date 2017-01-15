@@ -9,6 +9,11 @@ func main() {
 	fmt.Println(x)
 	reverse(x)
 	fmt.Println(x)
+
+	a := [...]int{1, 2, 3, 4, 5, 6, 7}
+	fmt.Println(a)
+	reverse(a[:])
+	fmt.Println(a)
 }
 
 func reverse(x []int) {
