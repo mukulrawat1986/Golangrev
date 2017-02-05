@@ -4,9 +4,11 @@ import (
 	"fmt"
 )
 
+const (
+	message = "The answer to life is %d\n"
+	answer  = 42
+)
+
 func main() {
-
-	message := "Hello, World!\n"
-
-	fmt.Printf(message)
+	fmt.Printf(message, answer)
 }
