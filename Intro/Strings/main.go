@@ -9,4 +9,7 @@ func main() {
 	for i, r := range atoz {
 		fmt.Printf("%d %c\n", i, r)
 	}
+
+	// length of string
+	fmt.Printf("Length of string: %d\n", len(atoz))
 }
