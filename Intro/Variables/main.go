@@ -5,10 +5,11 @@ import (
 )
 
 const (
-	message = "The answer to life is %d\n"
-	answer  = 42
+	message = "%d  %d\n"
+	answer1 = iota
+	answer2
 )
 
 func main() {
-	fmt.Printf(message, answer)
+	fmt.Printf(message, answer1, answer2)
 }
