@@ -6,15 +6,18 @@ import "fmt"
 func main() {
 	n, err := fmt.Printf("Hello, World!\n")
 
+	n = 0
+
 	switch {
 	case err != nil:
 		os.Exit(1)
 	case n == 0:
-		fmt.Printf("No bytes output")
+		fmt.Printf("No bytes output\n")
+		fallthrough
 	case n != 14:
-		fmt.Printf("Wrong number of characters")
+		fmt.Printf("Wrong number of characters\n")
 	default:
-		fmt.Printf("OK!")
+		fmt.Printf("OK!\n")
 	}
-	fmt.Printf("\n")
+
 }
