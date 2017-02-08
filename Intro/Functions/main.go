@@ -2,10 +2,14 @@ package main
 
 import "fmt"
 
-func printer(msg string) {
-	fmt.Printf("%s\n", msg)
+func printer(msg1, msg2 string, repeat int) {
+	for repeat > 0 {
+		fmt.Printf("%s", msg1)
+		fmt.Printf("%s\n", msg2)
+		repeat--
+	}
 }
 
 func main() {
-	fmt.Printf("Hello, World!\n")
+	printer("Hello", " World!", 5)
 }
