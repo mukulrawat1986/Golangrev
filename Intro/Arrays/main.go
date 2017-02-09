@@ -17,8 +17,19 @@ func main() {
 	words = append(words, "quick")
 	words = append(words, "brown")
 	words = append(words, "fox")
-	fmt.Printf("%d %d\n", len(words), cap(words))
 	printer(words)
-	words = append(words, "jumps")
-	fmt.Printf("%d %d\n", len(words), cap(words))
+
+	newWords := make([]string, 4)
+
+	// create a copy of the slice
+	copy(newWords, words)
+	newWords[2] = "blue"
+	printer(newWords)
+	printer(words)
+
+	// create a reference of the slice
+	newRef := words[:4]
+	newRef[2] = "blue"
+	printer(newRef)
+	printer(words)
 }
