@@ -13,5 +13,7 @@ func printer(w []string) {
 func main() {
 	// slice
 	words := []string{"the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"}
-	printer(words[5:])
+	printer(words[2:4])
+	words[2] = "blue"
+	printer(words[2:4])
 }
