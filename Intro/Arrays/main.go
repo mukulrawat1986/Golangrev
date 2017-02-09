@@ -12,10 +12,13 @@ func printer(w []string) {
 
 func main() {
 	// using make to create a slice
-	words := make([]string, 0)
-	words[0] = "the"
-	words[1] = "quick"
-	words[2] = "brown"
-	words[3] = "fox"
+	words := make([]string, 0, 4)
+	words = append(words, "the")
+	words = append(words, "quick")
+	words = append(words, "brown")
+	words = append(words, "fox")
+	fmt.Printf("%d %d\n", len(words), cap(words))
 	printer(words)
+	words = append(words, "jumps")
+	fmt.Printf("%d %d\n", len(words), cap(words))
 }
