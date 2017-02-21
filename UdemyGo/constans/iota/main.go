@@ -8,9 +8,20 @@ const (
 	C        // 2
 )
 
+// as soon as we redefine iota in another declaration
+// it resets to 0
+const (
+	D = iota // 0
+	E        // 1
+	F        // 2
+)
+
 func main() {
 
 	fmt.Println(A)
 	fmt.Println(B)
 	fmt.Println(C)
+	fmt.Println(D)
+	fmt.Println(E)
+	fmt.Println(F)
 }
