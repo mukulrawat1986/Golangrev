@@ -14,6 +14,7 @@ import (
 	"io/ioutil"
 	"net/url"
 
+	"github.com/codegangsta/negroni"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -29,6 +30,16 @@ type SearchResult struct {
 	ID     string `xml:"owi,attr"`
 }
 
+var db *sql.DB
+
+func verifyDatabase(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+	if err := db.Ping(); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	next(w, r)
+}
+
 func main() {
 
 	templates := template.Must(template.ParseFiles("templates/index.html"))
@@ -41,7 +52,9 @@ func main() {
 	}
 	defer db.Close()
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 
 		p := Page{Name: "Gopher"}
 
@@ -57,7 +70,7 @@ func main() {
 		// fmt.Fprintf(w, "Hello, Go Web Development")
 	})
 
-	http.HandleFunc("/search", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/search", func(w http.ResponseWriter, r *http.Request) {
 		// results := []SearchResult{
 		// 	SearchResult{"Moby-Dick", "Herman Melville", "1851", "222222"},
 		// 	SearchResult{"The Adventures of HuckleBerry Finn", "Mark Twain", "1884", "444444"},
@@ -77,16 +90,17 @@ func main() {
 		}
 	})
 
-	http.HandleFunc("/books/add", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/books/add", func(w http.ResponseWriter, r *http.Request) {
 		var book ClassifyBookResponse
 		var err error
 
 		if book, err = find(r.FormValue("id")); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
-		if err = db.Ping(); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
+
+		// if err = db.Ping(); err != nil {
+		// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+		// }
 
 		_, err = db.Exec("insert into books (pk, title, author, id, classification) values(?, ?, ?, ?, ?)",
 			nil, book.BookData.Title, book.BookData.Author, book.BookData.ID,
@@ -97,7 +111,11 @@ func main() {
 		}
 	})
 
-	fmt.Println(http.ListenAndServe(":8080", nil))
+	n := negroni.Classic()
+	n.Use(negroni.HandlerFunc(verifyDatabase))
+	n.UseHandler(mux)
+	n.Run(":8080")
+	// fmt.Println(http.ListenAndServe(":8080", nil))
 }
 
 type ClassifySearchResponse struct {
