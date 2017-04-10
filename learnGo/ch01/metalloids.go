@@ -17,6 +17,13 @@ type metalloid struct {
 	weight amu
 }
 
+func (m metalloid) String() string {
+	return fmt.Sprintf(
+		"%-10s %-10d %-10.3f %e",
+		m.name, m.number, m.weight.float(), atoms(moles(m.weight)),
+	)
+}
+
 var metalloids = []metalloid{
 	metalloid{"Boron", 5, 10.81},
 	metalloid{"Silicon", 14, 28.08},
@@ -49,9 +56,6 @@ func main() {
 	fmt.Printf(headers())
 
 	for _, m := range metalloids {
-		fmt.Printf(
-			"%-10s %-10d %-10.3f %e\n",
-			m.name, m.number, m.weight.float(), atoms(moles(m.weight)),
-		)
+		fmt.Print(m, "\n")
 	}
 }
