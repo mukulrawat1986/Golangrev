@@ -20,4 +20,9 @@ func main() {
 	// length of string
 	// len gives the number of bytes in the string
 	fmt.Println(len(atoz))
+
+	// using backquotes
+	atoz1 := `the quick brown fox jumps over the lazy dog\n`
+
+	fmt.Printf("%s\n", atoz1)
 }
