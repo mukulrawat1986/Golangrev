@@ -11,4 +11,9 @@ func main() {
 	fmt.Printf("%s\n", atoz[:9])
 	fmt.Printf("%s\n", atoz[15:19])
 	fmt.Printf("%s\n", atoz[15:])
+
+	// going through a string rune by rune
+	for i, r := range atoz {
+		fmt.Printf("%d %c\n", i, r)
+	}
 }
