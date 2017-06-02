@@ -4,11 +4,8 @@ import "fmt"
 
 func main() {
 
-	// Using counter to run a loop
-	var counter int
-
-	for counter < 10 {
-		fmt.Printf("Hello, World\n")
-		counter += 1
+	// concise way to run a for loop
+	for counter := 0; counter < 10; counter += 1 {
+		fmt.Printf("Hello, World!\n")
 	}
 }
