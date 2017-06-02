@@ -8,4 +8,7 @@ func main() {
 
 	// take substrings
 	fmt.Printf("%s\n", atoz[0:9])
+	fmt.Printf("%s\n", atoz[:9])
+	fmt.Printf("%s\n", atoz[15:19])
+	fmt.Printf("%s\n", atoz[15:])
 }
