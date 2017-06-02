@@ -1,30 +1,23 @@
 package main
 
-import (
-	"fmt"
-	"os"
-)
+import "fmt"
 
 func main() {
-	n, err := fmt.Print("Hello, World!")
 
-	fmt.Printf("\n")
+	atoz := "the quick brown fox jumps over the lazy dog"
 
-	n = 0
+	var vowels, consonants int
 
-	switch {
-	case err != nil:
-		os.Exit(1)
+	for _, r := range atoz {
 
-	case n == 0:
-		fmt.Printf("No bytes output\n")
-		fallthrough
-
-	case n != 13:
-		fmt.Printf("Wrong number of characters\n")
-
-	default:
-		fmt.Printf("OK!\n")
+		// switching over a variable
+		switch r {
+		case 'a', 'e', 'i', 'o', 'u':
+			vowels += 1
+		default:
+			consonants += 1
+		}
 	}
 
+	fmt.Printf("Vowels: %d; Consonants: %d\n", vowels, consonants)
 }
