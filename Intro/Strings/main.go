@@ -16,4 +16,8 @@ func main() {
 	for i, r := range atoz {
 		fmt.Printf("%d %c\n", i, r)
 	}
+
+	// length of string
+	// len gives the number of bytes in the string
+	fmt.Println(len(atoz))
 }
