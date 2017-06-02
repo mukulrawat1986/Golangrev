@@ -6,7 +6,7 @@ func main() {
 
 	atoz := "the quick brown fox jumps over the lazy dog"
 
-	var vowels, consonants int
+	var vowels, consonants, zeds int
 
 	for _, r := range atoz {
 
@@ -14,10 +14,13 @@ func main() {
 		switch r {
 		case 'a', 'e', 'i', 'o', 'u':
 			vowels += 1
+		case 'z':
+			zeds += 1
+			fallthrough
 		default:
 			consonants += 1
 		}
 	}
 
-	fmt.Printf("Vowels: %d; Consonants: %d\n", vowels, consonants)
+	fmt.Printf("Vowels: %d; Consonants: %d (Zeds: %d)\n", vowels, consonants, zeds)
 }
