@@ -3,9 +3,14 @@ package main
 import "fmt"
 
 func main() {
+	var stop bool
+	var counter int
 
-	// using two variables in a for loop
-	for i, j := 0, 1; i < 10; i, j = i+1, j*2 {
-		fmt.Printf("%d Hello, World!\n ", j)
+	for !stop {
+		fmt.Printf("Hello, World!\n")
+		counter += 1
+		if counter == 10 {
+			stop = true
+		}
 	}
 }
