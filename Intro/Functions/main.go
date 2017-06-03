@@ -2,12 +2,12 @@ package main
 
 import "fmt"
 
-func printer(msgs ...string) {
+func printer(format string, msgs ...string) {
 	for _, msg := range msgs {
-		fmt.Printf("%s\n", msg)
+		fmt.Printf(format, msg)
 	}
 }
 
 func main() {
-	printer("Hello", "world", "this", "is", "dog")
+	printer("%s\n", "Hello", "world", "this", "is", "dog")
 }
