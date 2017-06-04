@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func printer(w [4]string) {
+func printer(w []string) {
 	for _, word := range w {
 		fmt.Printf("%s", word)
 	}
@@ -12,8 +12,13 @@ func printer(w [4]string) {
 }
 
 func main() {
-	// an array of strings
-	words := [4]string{"the", "quick", "brown", "fox"}
+	// a slice of strings
+	words := []string{"the", "quick", "brown", "fox", "jumps",
+		"over", "the", "lazy", "dog"}
+
+	// length of slice
+	fmt.Printf("%d\n", len(words))
+
 	printer(words)
 	printer(words)
 }
