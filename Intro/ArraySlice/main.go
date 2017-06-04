@@ -10,11 +10,12 @@ func printer(w []string) {
 }
 
 func main() {
-	// using make to create a slice of string
-	words := make([]string, 4)
-	words[0] = "The"
-	words[1] = "quick"
-	words[2] = "brown"
-	words[3] = "fox"
+	// using make to create a slice of string and appending
+	// items to it
+	words := make([]string, 0, 4)
+	words = append(words, "The")
+	words = append(words, "quick")
+	words = append(words, "brown")
+	words = append(words, "fox")
 	printer(words)
 }
