@@ -7,8 +7,6 @@ func printer(w []string) {
 		fmt.Printf("%s", word)
 	}
 	fmt.Printf("\n")
-
-	w[2] = "blue"
 }
 
 func main() {
@@ -19,6 +17,7 @@ func main() {
 	// length of slice
 	fmt.Printf("%d\n", len(words))
 
-	printer(words)
-	printer(words)
+	// slicing a slice
+	printer(words[0:2])
+	printer(words[:3])
 }
