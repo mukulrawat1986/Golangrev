@@ -22,4 +22,9 @@ func main() {
 	printer(words)
 	words = append(words, "jumps")
 	fmt.Printf("%d %d\n", len(words), cap(words))
+
+	newWords := make([]string, 4)
+	copy(newWords, words)
+	newWords[2] = "blue"
+	printer(newWords)
 }
