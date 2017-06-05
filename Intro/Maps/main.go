@@ -19,4 +19,8 @@ func main() {
 	dayMonths["Dec"] = 31
 
 	fmt.Printf("Days in February: %d\n", dayMonths["Feb"])
+
+	// accessing a key that does not exist
+	// it returns the zero value of the corresponding value
+	fmt.Printf("Days in January: %d\n", dayMonths["January"])
 }
