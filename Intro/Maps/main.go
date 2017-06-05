@@ -41,9 +41,22 @@ func main() {
 
 	for _, days := range dayMonths {
 		if days == 31 {
-			has31 += 1
+			has31++
 		}
 	}
 
 	fmt.Printf("%d months have 31 days\n", has31)
+
+	// delete items from the map
+	delete(dayMonths, "Feb")
+
+	var has28 int
+
+	for _, days := range dayMonths {
+		if days == 28 {
+			has28++
+		}
+	}
+
+	fmt.Printf("%d months have 28 days\n", has28)
 }
