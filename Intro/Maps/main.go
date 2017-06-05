@@ -31,4 +31,9 @@ func main() {
 	} else {
 		fmt.Printf("%d\n", days)
 	}
+
+	// iterating over a map
+	for month, days := range dayMonths {
+		fmt.Printf("%s has %d days\n", month, days)
+	}
 }
