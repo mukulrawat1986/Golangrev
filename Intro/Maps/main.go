@@ -36,4 +36,14 @@ func main() {
 	for month, days := range dayMonths {
 		fmt.Printf("%s has %d days\n", month, days)
 	}
+
+	var has31 int
+
+	for _, days := range dayMonths {
+		if days == 31 {
+			has31 += 1
+		}
+	}
+
+	fmt.Printf("%d months have 31 days\n", has31)
 }
