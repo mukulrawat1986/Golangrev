@@ -1,22 +1,22 @@
 package main
 
-import (
-	"fmt"
-	"math/rand"
-)
+import "fmt"
 
-func makeRandoms(c chan int) {
+func makeID(idChan chan int) {
+	var id int
 	for {
-		c <- rand.Intn(1000)
+		idChan <- id
+		id++
 	}
 }
 
 func main() {
-	randoms := make(chan int)
+	idChan := make(chan int)
 
-	go makeRandoms(randoms)
+	go makeID(idChan)
 
-	for n := range randoms {
-		fmt.Printf("%d ", n)
-	}
+	// generate a id
+	fmt.Printf("%d\n", <-idChan)
+
+	fmt.Printf("%d\n", <-idChan)
 }
