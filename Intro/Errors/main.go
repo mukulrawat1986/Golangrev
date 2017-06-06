@@ -1,13 +1,18 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 )
 
+var (
+	errorEmptyString = errors.New("Unwilling to print an empty string")
+)
+
 func printer(msg string) error {
 	if msg == "" {
-		return fmt.Errorf("Unwilling to print empty string")
+		return errorEmptyString
 	}
 	_, err := fmt.Printf("%s\n", msg)
 	return err
@@ -15,7 +20,11 @@ func printer(msg string) error {
 
 func main() {
 	if err := printer("Hello, World!!"); err != nil {
-		fmt.Printf("Printer failed: %s\n", err)
+		if err == errorEmptyString {
+			fmt.Printf("You tried to print an empty string!")
+		} else {
+			fmt.Printf("Printer failed: %s\n", err)
+		}
 		os.Exit(1)
 	}
 }
