@@ -12,7 +12,7 @@ var (
 
 func printer(msg string) error {
 	if msg == "" {
-		return errorEmptyString
+		panic(errorEmptyString)
 	}
 	_, err := fmt.Printf("%s\n", msg)
 	return err
