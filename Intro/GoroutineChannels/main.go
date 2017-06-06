@@ -10,7 +10,7 @@ func emit(c chan string) {
 		c <- word
 	}
 	// close the channel
-	close(c)
+	//	close(c)
 }
 
 func main() {
@@ -19,21 +19,14 @@ func main() {
 
 	// start a goroutine
 	go emit(wordChannel)
+	go emit(wordChannel)
 
-	word := <-wordChannel
-	fmt.Printf("%s\n", word)
-	word = <-wordChannel
-	fmt.Printf("%s\n", word)
-	word = <-wordChannel
-	fmt.Printf("%s\n", word)
-	word = <-wordChannel
-	fmt.Printf("%s\n", word)
-
-	// now if we try to receive from the channel again
-	if word, ok := <-wordChannel; ok {
-		fmt.Printf("%s\n", word)
-	} else {
-		fmt.Printf("All data has been transmitted\n")
+	// we range over the channel till the channel is open
+	// if the channel is not closed in the goroutine and we are
+	// ranging over it a deadlock happens
+	for word := range wordChannel {
+		fmt.Printf("%s ", word)
 	}
 
+	fmt.Printf("\n")
 }
