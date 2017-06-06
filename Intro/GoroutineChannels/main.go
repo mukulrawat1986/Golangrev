@@ -30,7 +30,10 @@ func main() {
 	fmt.Printf("%s\n", word)
 
 	// now if we try to receive from the channel again
-	word = <-wordChannel
-	fmt.Printf("%s\n", word)
+	if word, ok := <-wordChannel; ok {
+		fmt.Printf("%s\n", word)
+	} else {
+		fmt.Printf("All data has been transmitted\n")
+	}
 
 }
