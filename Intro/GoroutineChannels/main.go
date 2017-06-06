@@ -1,32 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
-func emit(c chan string) {
-
-	words := []string{"the", "quick", "brown", "fox"}
-	for _, word := range words {
-		// pass the string on the channel
-		c <- word
+func makeRandoms(c chan int) {
+	for {
+		c <- rand.Intn(1000)
 	}
-	// close the channel
-	//	close(c)
 }
 
 func main() {
+	randoms := make(chan int)
 
-	wordChannel := make(chan string)
+	go makeRandoms(randoms)
 
-	// start a goroutine
-	go emit(wordChannel)
-	go emit(wordChannel)
-
-	// we range over the channel till the channel is open
-	// if the channel is not closed in the goroutine and we are
-	// ranging over it a deadlock happens
-	for word := range wordChannel {
-		fmt.Printf("%s ", word)
+	for n := range randoms {
+		fmt.Printf("%d ", n)
 	}
-
-	fmt.Printf("\n")
 }
