@@ -28,4 +28,9 @@ func main() {
 	fmt.Printf("%s\n", word)
 	word = <-wordChannel
 	fmt.Printf("%s\n", word)
+
+	// now if we try to receive from the channel again
+	word = <-wordChannel
+	fmt.Printf("%s\n", word)
+
 }
