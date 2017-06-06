@@ -20,11 +20,12 @@ func main() {
 	// start a goroutine
 	go emit(wordChannel)
 
-	// receive the words coming from the channel
-	// when we range over a channel, we receive everything on this channel
-	// successfully, until the channel is closed
-	for word := range wordChannel {
-		fmt.Printf("%s ", word)
-	}
-	fmt.Printf("\n")
+	word := <-wordChannel
+	fmt.Printf("%s\n", word)
+	word = <-wordChannel
+	fmt.Printf("%s\n", word)
+	word = <-wordChannel
+	fmt.Printf("%s\n", word)
+	word = <-wordChannel
+	fmt.Printf("%s\n", word)
 }
