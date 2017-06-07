@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"os"
 )
 
 func getPage(url string) (int, error) {
@@ -25,16 +24,24 @@ func getPage(url string) (int, error) {
 	return len(body), nil
 }
 
+func getter(url string, size chan int) {
+	length, err := getPage(url)
+	if err == nil {
+		size <- length
+	}
+}
+
 func main() {
 	urls := []string{"http://www.google.com/", "http://www.yahoo.com",
 		"http://www.bing.com", "http://bbc.co.uk"}
 
-	for _, url := range urls {
-		pageLength, err := getPage(url)
-		if err != nil {
-			os.Exit(1)
-		}
+	size := make(chan int)
 
-		fmt.Printf("%s is length %d\n", url, pageLength)
+	for _, url := range urls {
+		go getter(url, size)
+	}
+
+	for i := 0; i < len(urls); i++ {
+		fmt.Printf("Length %d\n", <-size)
 	}
 }
