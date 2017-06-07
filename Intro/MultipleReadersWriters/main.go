@@ -36,16 +36,27 @@ func worker(urlCh chan string, sizeCh chan string) {
 	}
 }
 
+func generator(url string, urlCh chan string) {
+	urlCh <- url
+}
+
 func main() {
-	// 	urls := []string{"http://www.google.com/", "http://www.yahoo.com",
-	//		"http://www.bing.com", "http://bbc.co.uk"}
+	urls := []string{"http://www.google.com/", "http://www.yahoo.com",
+		"http://www.bing.com", "http://bbc.co.uk", "http://www.oreilly.com"}
 
 	urlCh := make(chan string)
 	sizeCh := make(chan string)
 
-	go worker(urlCh, sizeCh)
+	// run multiple workers
+	for i := 0; i < 10; i++ {
+		go worker(urlCh, sizeCh)
+	}
 
-	urlCh <- "http://www.oreilly.com/"
+	for _, url := range urls {
+		go generator(url, urlCh)
+	}
 
-	fmt.Printf("%s\n", <-sizeCh)
+	for i := 0; i < len(urls); i++ {
+		fmt.Printf("%s\n", <-sizeCh)
+	}
 }
