@@ -19,8 +19,7 @@ func emit(wordChan chan string, done chan bool) {
 
 		// if it receives message on done channel
 		case <-done:
-			fmt.Printf("Got done\n")
-			close(done)
+			done <- true
 			return
 		}
 	}
@@ -37,4 +36,5 @@ func main() {
 	}
 
 	doneCh <- true
+	<-doneCh
 }
