@@ -9,7 +9,7 @@ import (
 )
 
 func reader(ch chan int) {
-	t := time.NewTimer(3 * time.Second)
+	t := time.NewTimer(10 * time.Second)
 	for {
 		select {
 		// when ch becomes nil, this particular case is ignored by select
@@ -22,8 +22,20 @@ func reader(ch chan int) {
 }
 
 func writer(ch chan int) {
+	stopper := time.NewTimer(2 * time.Second)
+	restarter := time.NewTimer(5 * time.Second)
+
+	// save the initiail state of the channel
+	savedCh := ch
+
 	for {
-		ch <- rand.Intn(42)
+		select {
+		case ch <- rand.Intn(42):
+		case <-stopper.C:
+			ch = nil
+		case <-restarter.C:
+			ch = savedCh
+		}
 	}
 }
 
@@ -32,5 +44,5 @@ func main() {
 	go reader(ch)
 	go writer(ch)
 
-	time.Sleep(10 * time.Second)
+	time.Sleep(20 * time.Second)
 }
