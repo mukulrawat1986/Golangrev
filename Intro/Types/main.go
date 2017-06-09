@@ -30,6 +30,17 @@ func (w *webPage) isOk() bool {
 	return w.err == nil
 }
 
+// user defined type
+type SummableSlice []int
+
+func (s SummableSlice) sum() int {
+	var sum int
+	for _, i := range s {
+		sum += i
+	}
+	return sum
+}
+
 func main() {
 
 	// create an empty structure
@@ -47,4 +58,8 @@ func main() {
 	} else {
 		fmt.Printf("Something went wrong")
 	}
+
+	var s = SummableSlice{1, 1, 2, 3, 5, 8, 13}
+
+	fmt.Printf("%d\n", s.sum())
 }
