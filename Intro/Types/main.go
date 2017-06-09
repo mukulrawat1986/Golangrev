@@ -31,6 +31,15 @@ func (w *webPage) isOk() bool {
 }
 
 func main() {
+
+	// create an empty structure
+	// w := &webPage{}
+	// w.url ="http://www.oreilly.com"
+
+	// using new to create the empty structure
+	// w := new (webPage)
+	// w.url = "http://www.oreilly.com"
+
 	w := &webPage{url: "http://www.oreilly.com"}
 	w.get()
 	if w.isOk() {
