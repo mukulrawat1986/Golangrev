@@ -26,8 +26,16 @@ func (w *webPage) get() {
 	}
 }
 
+func (w *webPage) isOk() bool {
+	return w.err == nil
+}
+
 func main() {
 	w := &webPage{url: "http://www.oreilly.com"}
 	w.get()
-	fmt.Printf("URL: %s Error: %s Length %d", w.url, w.err, len(w.body))
+	if w.isOk() {
+		fmt.Printf("URL: %s Error: %s Length %d", w.url, w.err, len(w.body))
+	} else {
+		fmt.Printf("Something went wrong")
+	}
 }
