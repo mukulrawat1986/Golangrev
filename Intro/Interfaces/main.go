@@ -28,8 +28,22 @@ func (is intSlice) Swap(i, j int) {
 	is[i], is[j] = is[j], is[i]
 }
 
+type stringSlice []string
+
+func (s stringSlice) Len() int {
+	return len(s)
+}
+
+func (s stringSlice) Swap(i, j int) {
+	s[i], s[j] = s[j], s[i]
+}
+
 func main() {
 	is := intSlice{1, 2, 3, 4, 5, 6}
 	shuffle(is)
 	fmt.Printf("%v\n", is)
+
+	s := stringSlice{"The", "quick", "brown", "fox"}
+	shuffle(s)
+	fmt.Printf("%v\n", s)
 }
