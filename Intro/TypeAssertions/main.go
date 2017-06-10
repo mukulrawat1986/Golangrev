@@ -3,13 +3,13 @@ package main
 import "fmt"
 
 func whatIsThis(i interface{}) {
-	switch v := i.(type) {
+	switch i.(type) {
 	case string:
-		fmt.Printf("It's a string %s\n", v)
+		fmt.Printf("It's a string %s\n", i.(string))
 	case uint32:
-		fmt.Printf("It's an unsigned 32-bit integer %d\n", v)
+		fmt.Printf("It's an unsigned 32-bit integer %d\n", i.(uint32))
 	default:
-		fmt.Printf("Don't know %v\n", v)
+		fmt.Printf("Don't know\n")
 	}
 }
 
