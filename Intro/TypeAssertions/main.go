@@ -5,9 +5,11 @@ import "fmt"
 func whatIsThis(i interface{}) {
 	switch i.(type) {
 	case string:
-		fmt.Printf("It's a string %s\n", i.(string))
+		s := i.(string)
+		fmt.Printf("It's a string %s\n", s)
 	case uint32:
-		fmt.Printf("It's an unsigned 32-bit integer %d\n", i.(uint32))
+		u := i.(uint32)
+		fmt.Printf("It's an unsigned 32-bit integer %d\n", u)
 	default:
 		fmt.Printf("Don't know\n")
 	}
