@@ -1,4 +1,4 @@
-package Shuffler
+package shuffler
 
 import "math/rand"
 
