@@ -2,12 +2,13 @@ package main
 
 import "fmt"
 
-const (
+var (
 	message = "The answer to life is %d\n"
 	answer  = 42
 )
 
 func main() {
 
+	answer += 1
 	fmt.Printf(message, answer)
 }
