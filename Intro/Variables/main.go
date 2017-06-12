@@ -4,10 +4,8 @@ import "fmt"
 
 func main() {
 
-	// create a variable of type string
-	var message string
-
-	message = "Hello, World!\n"
+	// create a variable by shorcircuiting and not using var
+	message := "Hello, World!\n"
 
 	fmt.Printf(message)
 }
