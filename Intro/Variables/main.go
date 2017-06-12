@@ -2,11 +2,12 @@ package main
 
 import "fmt"
 
-func main() {
+const (
+	message = "The answer to life is %d\n"
+	answer  = 42
+)
 
-	// create a variable by shorcircuiting and not using var
-	message := "The answer to life is %d\n"
-	answer := 42
+func main() {
 
 	fmt.Printf(message, answer)
 }
