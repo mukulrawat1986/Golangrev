@@ -12,6 +12,16 @@ func printer(w [4]string) {
 	w[2] = "blue"
 }
 
+func printer1(w []string) {
+	for _, word := range w {
+		fmt.Printf("%s", word)
+	}
+	fmt.Printf("\n")
+
+	// since its a slice, the change will be reflected
+	w[2] = "blue"
+}
+
 func main() {
 	// declare and initialize an array of strings
 	words := [...]string{"the", "quick", "brown", "fox"}
@@ -28,4 +38,6 @@ func main() {
 
 	fmt.Printf("The length of string is %d\n", len(words1))
 
+	printer1(words1)
+	printer1(words1)
 }
