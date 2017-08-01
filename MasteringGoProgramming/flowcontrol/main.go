@@ -6,6 +6,11 @@ import (
 )
 
 func main() {
+
+	// defer
+	defer fmt.Println("Exiting main function.......")
+	fmt.Println("Entering main function")
+
 	// if statement
 	inc := increment()
 
