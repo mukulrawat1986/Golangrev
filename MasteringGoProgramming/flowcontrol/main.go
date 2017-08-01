@@ -4,12 +4,21 @@ import "fmt"
 
 func main() {
 	// if statement
-	i := 10
-	if i < 0 {
+	inc := increment()
+
+	if i := inc(); i < 0 {
 		fmt.Println("i is a negative number")
 	} else if i == 0 {
 		fmt.Println("i is zero")
 	} else {
 		fmt.Println("i is a positive number")
+	}
+}
+
+func increment() func() int {
+	i := 0
+	return func() int {
+		i++
+		return i
 	}
 }
