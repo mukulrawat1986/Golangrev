@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+)
 
 func main() {
 	// if statement
@@ -22,6 +25,17 @@ func main() {
 		fmt.Println("i is zero")
 	default:
 		fmt.Println("i is a positive number")
+	}
+
+	switch os := runtime.GOOS; os {
+	case "darwin":
+		fmt.Println("OS X.")
+	case "linux":
+		fmt.Println("Linux.")
+	default:
+		// freebsd, openbsd,
+		// plan9, windows..
+		fmt.Printf("%s.", os)
 	}
 }
 
