@@ -13,6 +13,16 @@ func main() {
 	} else {
 		fmt.Println("i is a positive number")
 	}
+
+	// switch statement
+	switch i := inc(); {
+	case i < 0:
+		fmt.Println("i is a negative number")
+	case i == 0:
+		fmt.Println("i is zero")
+	default:
+		fmt.Println("i is a positive number")
+	}
 }
 
 func increment() func() int {
