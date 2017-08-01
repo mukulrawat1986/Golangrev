@@ -10,4 +10,9 @@ func main() {
 
 	b := [3]int{9, 8, 10}
 	fmt.Println("Array b", b, len(b))
+
+	// slice
+	c := []int{99, 44}
+	c = append(c, 82)
+	fmt.Println("Slice c", c, len(c))
 }
