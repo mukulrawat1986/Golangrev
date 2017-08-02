@@ -42,6 +42,21 @@ func main() {
 		// plan9, windows..
 		fmt.Printf("%s.", os)
 	}
+
+	// loops
+	n := 1
+	for i := 10; i > 0; i-- {
+		n *= i
+	}
+
+	fmt.Println("Result: ", n)
+
+	n = 1
+
+	for n <= 50 {
+		n += n
+	}
+	fmt.Println("Result: ", n)
 }
 
 func increment() func() int {
