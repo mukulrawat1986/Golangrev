@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	var pi float32 = 3.14
-	fmt.Printf("Value: %.2f\n", pi)
+	b := byte(65)
+
+	fmt.Printf("Value: %x\n", b)
 }
