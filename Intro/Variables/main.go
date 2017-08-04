@@ -2,12 +2,7 @@ package main
 
 import "fmt"
 
-const (
-	message = "%d %d\n "
-	answer1 = iota
-	answer2
-)
-
 func main() {
-	fmt.Printf(message, answer1, answer2)
+	var pi float64 = 3.14
+	fmt.Printf("Value: %f\n", pi)
 }
