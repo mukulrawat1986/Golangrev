@@ -39,7 +39,7 @@ func main() {
 	s3[0] = 10000
 	fmt.Println(s3, s1)
 
-	// copying slices
+	// copying slices - deep copy
 	s2 := make([]int, 2)
 	copy(s2, s1)
 	fmt.Println(s2)
