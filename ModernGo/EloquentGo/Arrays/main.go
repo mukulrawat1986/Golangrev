@@ -33,4 +33,14 @@ func main() {
 
 	s1 := s[1:3]
 	fmt.Println(s1[:cap(s1)])
+
+	// shallow copy
+	s3 := s1
+	s3[0] = 10000
+	fmt.Println(s3, s1)
+
+	// copying slices
+	s2 := make([]int, 2)
+	copy(s2, s1)
+	fmt.Println(s2)
 }
