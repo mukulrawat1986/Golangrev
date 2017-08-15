@@ -31,6 +31,6 @@ func main() {
 	s[0], s[1], s[2], s[3], s[4] = 1, 2, 3, 4, 5 // capacity: cap(s), length: len(s)
 	fmt.Println(s)
 
-	s1 := s[2:5]
-	fmt.Println(s1)
+	s1 := s[1:3]
+	fmt.Println(s1[:cap(s1)])
 }
