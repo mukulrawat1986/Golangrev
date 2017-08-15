@@ -1,0 +1,16 @@
+package main
+
+import "fmt"
+
+func main() {
+	// array is a collection of values of same datatype
+
+	// create an array of 5 integers
+	var a [5]int
+
+	// create an array of 5 integers and assign them values
+	var b [5]int = [5]int{1, 2, 3, 4, 5}
+
+	fmt.Println(a)
+	fmt.Println(b)
+}
