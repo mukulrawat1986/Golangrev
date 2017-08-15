@@ -18,7 +18,7 @@ func main() {
 	fmt.Println(b)
 	fmt.Println(c)
 
-	mySlice := []int{1, 2, 3, 4, 5}
+	mySlice := []int{1, 2, 3, 4, 5} // []int{}
 	fmt.Println(mySlice)
 
 	// appending to a slice
