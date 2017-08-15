@@ -25,4 +25,12 @@ func main() {
 	mySlice = append(mySlice, 6, 7, 8)
 
 	fmt.Println(mySlice)
+
+	// a slice of length and capacity of 5
+	s := make([]int, 5)
+	s[0], s[1], s[2], s[3], s[4] = 1, 2, 3, 4, 5 // capacity: cap(s), length: len(s)
+	fmt.Println(s)
+
+	s1 := s[2:5]
+	fmt.Println(s1)
 }
