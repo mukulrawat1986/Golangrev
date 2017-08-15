@@ -11,6 +11,10 @@ func main() {
 	// create an array of 5 integers and assign them values
 	var b [5]int = [5]int{1, 2, 3, 4, 5}
 
+	//  short way to declare arrays
+	c := [5]int{1, 2, 3, 4, 5}
+
 	fmt.Println(a)
 	fmt.Println(b)
+	fmt.Println(c)
 }
