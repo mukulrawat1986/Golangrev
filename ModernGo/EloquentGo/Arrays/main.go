@@ -20,4 +20,9 @@ func main() {
 
 	mySlice := []int{1, 2, 3, 4, 5}
 	fmt.Println(mySlice)
+
+	// appending to a slice
+	mySlice = append(mySlice, 6, 7, 8)
+
+	fmt.Println(mySlice)
 }
