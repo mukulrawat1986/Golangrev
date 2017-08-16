@@ -29,4 +29,8 @@ func main() {
 	}
 
 	fmt.Println(x1)
+
+	// deleting an element from map
+	delete(x1, "first")
+	fmt.Println(x1)
 }
