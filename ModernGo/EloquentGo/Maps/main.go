@@ -21,4 +21,12 @@ func main() {
 	} else {
 		fmt.Println("Key does not exist\n")
 	}
+
+	// initializing a map using literals
+	x1 := map[string]int{
+		"first":  1,
+		"second": 2,
+	}
+
+	fmt.Println(x1)
 }
