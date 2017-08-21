@@ -15,7 +15,7 @@ func main() {
 		counts[input.Text()]++
 	}
 	if input.Err() != nil {
-		fmt.Fprintf(os.Stderr, "Error while scanning\n")
+		fmt.Fprintf(os.Stderr, "dup1: Error while scanning\n")
 	}
 
 	for line, n := range counts {
