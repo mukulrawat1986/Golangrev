@@ -23,7 +23,7 @@ func main() {
 	th := timeHandler(time.RFC1123)
 
 	// add it to servemux
-	mux.HandleFunc("/time", th)
+	mux.Handle("/time", th)
 
 	log.Println("Listening......")
 	log.Fatal(http.ListenAndServe(":3000", mux))
