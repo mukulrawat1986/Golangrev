@@ -16,11 +16,8 @@ func main() {
 	// create a new servemux
 	mux := http.NewServeMux()
 
-	// convert the timeHandler function to a HandlerFunc type
-	th := http.HandlerFunc(timeHandler)
-
 	// add it to servemux
-	mux.Handle("/time", th)
+	mux.HandleFunc("/time", timeHandler)
 
 	log.Println("Listening......")
 	log.Fatal(http.ListenAndServe(":3000", mux))
