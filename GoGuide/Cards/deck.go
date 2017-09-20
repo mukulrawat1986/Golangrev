@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"strings"
 )
 
@@ -40,8 +41,8 @@ func deal(d deck, handSize int) (deck, deck) {
 }
 
 // save a list of cards to a file on the local machine
-func saveToFile() {
-
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
 }
 
 // helper function to convert a deck to a string
