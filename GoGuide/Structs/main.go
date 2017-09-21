@@ -15,10 +15,16 @@ type person struct {
 	contactInfo
 }
 
-// receiver function
+// receiver functions
 
+// print the person struct
 func (p person) print() {
 	fmt.Printf("%+v\n", p)
+}
+
+// update the firstname of the person
+func (p *person) updateName(newFirstName string) {
+	(*p).firstName = newFirstName
 }
 
 func main() {
@@ -31,5 +37,7 @@ func main() {
 		},
 	}
 
+	jimPointer := &jim
+	jimPointer.updateName("jimmy")
 	jim.print()
 }
