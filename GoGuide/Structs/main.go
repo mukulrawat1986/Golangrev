@@ -15,6 +15,12 @@ type person struct {
 	contactInfo
 }
 
+// receiver function
+
+func (p person) print() {
+	fmt.Printf("%+v\n", p)
+}
+
 func main() {
 	jim := person{
 		firstName: "Jim",
@@ -25,5 +31,5 @@ func main() {
 		},
 	}
 
-	fmt.Printf("%+v\n", jim)
+	jim.print()
 }
