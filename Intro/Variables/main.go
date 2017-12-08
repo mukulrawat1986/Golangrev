@@ -3,7 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	message := "Hello, World\n"
-	fmt.Printf(message)
+	message := "The answer to life is %d\n"
+	answer := 42
+	fmt.Printf(message, answer)
 
 }
