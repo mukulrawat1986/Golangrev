@@ -9,15 +9,19 @@ func main() {
 
 	vowels := 0
 	consonants := 0
+	zeds := 0
 
 	for _, r := range atoz {
 		switch r {
 		case 'a', 'e', 'i', 'o', 'u':
 			vowels += 1
+		case 'z':
+			zeds++
+			fallthrough
 		default:
-			consonants += 1
+			consonants++
 		}
 	}
 
-	fmt.Printf("Vowels: %d; Consonants: %d\n", vowels, consonants)
+	fmt.Printf("Vowels: %d; Consonants: %d (Zeds: %d)\n", vowels, consonants, zeds)
 }
