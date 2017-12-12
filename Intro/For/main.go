@@ -6,7 +6,15 @@ import (
 
 func main() {
 
-	for i, j := 0, 1; i < 10; i, j = i+1, j*2 {
-		fmt.Printf("%d Hello, World\n", j)
+	var stop bool
+
+	i := 0
+
+	for !stop {
+		fmt.Printf("Hello, World\n")
+		i++
+		if i == 10 {
+			stop = true
+		}
 	}
 }
