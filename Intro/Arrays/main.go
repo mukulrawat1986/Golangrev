@@ -20,6 +20,17 @@ func main() {
 	words = append(words, "fox")
 	fmt.Printf("%d %d\n", len(words), cap(words))
 	printer(words)
-	words = append(words, "jumps")
-	fmt.Printf("%d %d\n", len(words), cap(words))
+
+	newWords := make([]string, 4)
+	copy(newWords, words)
+	printer(newWords)
+	newWords[2] = "blue"
+	printer(words)
+
+	newWords1 := words[0:4]
+	copy(newWords1, words)
+	printer(newWords1)
+	newWords1[2] = "blue"
+	printer(words)
+
 }
