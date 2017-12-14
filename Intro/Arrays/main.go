@@ -9,19 +9,13 @@ func printer(w []string) {
 		fmt.Printf("%s", word)
 	}
 	fmt.Printf("\n")
-	w[2] = "blue"
 }
 
 func main() {
-	words := []string{"the", "quick",
-		"brown", "fox",
-		"jumps", "over",
-		"the", "lazy", "dog"}
-
-	fmt.Printf("Length of the array is: ")
-	fmt.Printf("%d\n", len(words))
-
-	fmt.Printf("%s\n", words[2])
-	printer(words)
+	words := make([]string, 4)
+	words[0] = "The"
+	words[1] = "quick"
+	words[2] = "brown"
+	words[3] = "fox"
 	printer(words)
 }
