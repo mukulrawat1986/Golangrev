@@ -9,6 +9,7 @@ func printer(w [9]string) {
 		fmt.Printf("%s", word)
 	}
 	fmt.Printf("\n")
+	w[2] = "blue"
 }
 
 func main() {
@@ -18,5 +19,6 @@ func main() {
 		"the", "lazy", "dog"}
 
 	fmt.Printf("%s\n", words[2])
+	printer(words)
 	printer(words)
 }
