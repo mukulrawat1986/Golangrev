@@ -18,18 +18,13 @@ func main() {
 
 	go emit(wordChannel)
 
-	word := <-wordChannel
-	fmt.Printf("%s\n", word)
-	word = <-wordChannel
-	fmt.Printf("%s\n", word)
-	word = <-wordChannel
-	fmt.Printf("%s\n", word)
-	word = <-wordChannel
-	fmt.Printf("%s\n", word)
-	word, ok := <-wordChannel
-	if !ok {
-		fmt.Printf("Channel has been closed\n")
-	} else {
-		fmt.Printf("%s\n", word)
+	for {
+		word, ok := <-wordChannel
+		if !ok {
+			fmt.Printf("Channel has been closed\n")
+			break
+		} else {
+			fmt.Printf("%s\n", word)
+		}
 	}
 }
