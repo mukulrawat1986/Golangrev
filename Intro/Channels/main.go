@@ -18,11 +18,18 @@ func main() {
 
 	go emit(wordChannel)
 
-	// ranging over a channel means that receive
-	// everything from this channel one by one
-	// until the channel is closed.
-	for word := range wordChannel {
-		fmt.Printf("%s ", word)
+	word := <-wordChannel
+	fmt.Printf("%s\n", word)
+	word = <-wordChannel
+	fmt.Printf("%s\n", word)
+	word = <-wordChannel
+	fmt.Printf("%s\n", word)
+	word = <-wordChannel
+	fmt.Printf("%s\n", word)
+	word, ok := <-wordChannel
+	if !ok {
+		fmt.Printf("Channel has been closed\n")
+	} else {
+		fmt.Printf("%s\n", word)
 	}
-	fmt.Printf("\n")
 }
