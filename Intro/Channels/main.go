@@ -10,21 +10,17 @@ func emit(c chan string) {
 		c <- word
 	}
 
-	close(c)
+	// close(c)
 }
 
 func main() {
 	wordChannel := make(chan string)
 
 	go emit(wordChannel)
+	go emit(wordChannel)
 
-	for {
-		word, ok := <-wordChannel
-		if !ok {
-			fmt.Printf("Channel has been closed\n")
-			break
-		} else {
-			fmt.Printf("%s\n", word)
-		}
+	for word := range wordChannel {
+		fmt.Printf("%s ", word)
 	}
+	fmt.Printf("\n")
 }
