@@ -16,8 +16,7 @@ func emit(wordChannel chan string, done chan bool) {
 				i = 0
 			}
 		case <-done:
-			fmt.Printf("\nGot done\n")
-			close(done)
+			done <- true
 			return
 		}
 	}
@@ -34,4 +33,5 @@ func main() {
 	}
 
 	doneCh <- true
+	<-doneCh
 }
