@@ -1,26 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
-func emit(c chan string) {
-	words := []string{"the", "quick",
-		"brown", "fox"}
-
-	for _, word := range words {
-		c <- word
+func makeRandoms(c chan int) {
+	for {
+		c <- rand.Intn(1000)
 	}
-
-	// close(c)
 }
 
 func main() {
-	wordChannel := make(chan string)
+	randoms := make(chan int)
+	go makeRandoms(randoms)
 
-	go emit(wordChannel)
-	go emit(wordChannel)
-
-	for word := range wordChannel {
-		fmt.Printf("%s ", word)
+	for n := range randoms {
+		fmt.Printf("%d ", n)
 	}
-	fmt.Printf("\n")
+
 }
