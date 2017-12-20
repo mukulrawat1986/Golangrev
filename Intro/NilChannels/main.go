@@ -22,8 +22,15 @@ func reader(ch chan int) {
 }
 
 func writer(ch chan int) {
+	t := time.NewTimer(2 * time.Second)
+	
 	for {
-		ch <- rand.Intn(42)
+		select {
+		case ch <- rand.Intn(42):
+		case <-t.C:
+			fmt.Printf("stop sending\n")
+			ch = nil
+		}
 	}
 }
 
