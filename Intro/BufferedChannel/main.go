@@ -3,12 +3,19 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"sync/atomic"
 	"time"
 )
 
+var (
+	running int64
+)
+
 func work() {
-	fmt.Printf("[")
+	atomic.AddInt64(&running, 1)
+	fmt.Printf("[ %d", running)
 	time.Sleep(time.Duration(rand.Intn(10)) * time.Second)
+	atomic.AddInt64(&running, -1)
 	fmt.Printf("]")
 }
 
