@@ -5,7 +5,5 @@ import (
 )
 
 func main() {
-	atoz := `the quick brown fox jumps over the lazy dog\n`
-	fmt.Printf("%s\n", atoz)
-
+	atoz := "the quick brown fox jumps over the lazy dog\n"
 }
