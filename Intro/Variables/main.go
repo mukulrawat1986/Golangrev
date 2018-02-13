@@ -3,9 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	var message string
-
-	message = "Hello, World\n"
+	// := is declaration while = is assignment
+	message := "Hello, World\n"
 
 	fmt.Printf(message)
 }
