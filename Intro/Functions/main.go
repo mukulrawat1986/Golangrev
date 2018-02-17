@@ -1,15 +1,10 @@
 package main
 
-import "os"
+import "fmt"
 
-func printer(msg string) error {
-	f, err := os.Create("helloworld.txt")
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-	f.Write([]byte(msg))
-	return nil
+func printer(msg string) (e error) {
+	_, e := fmt.Printf("%s\n", msg)
+	return
 }
 
 func main() {
