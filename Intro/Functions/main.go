@@ -2,14 +2,12 @@ package main
 
 import "fmt"
 
-func printer(msg, msg2 string, repeat int) {
-	for repeat > 0 {
-		fmt.Printf("%s", msg)
-		fmt.Printf("%s\n", msg2)
-		repeat--
-	}
+func printer(msg string) error {
+	defer fmt.Printf("\n")
+	_, err := fmt.Printf("%s", msg)
+	return err
 }
 
 func main() {
-	printer("Hello,", " World!", 10)
+	printer("Hello, World!")
 }
