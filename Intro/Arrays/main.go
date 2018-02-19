@@ -10,11 +10,10 @@ func printer(w []string) {
 }
 
 func main() {
-	words := make([]string, 4)
-	words[0] = "The"
-	words[1] = "Quick"
-	words[2] = "Brown"
-	words[3] = "Fox"
-
+	words := make([]string, 0, 4)
+	words = append(words, "The")
+	words = append(words, "Quick")
+	words = append(words, "Brown")
+	words = append(words, "Fox")
 	printer(words)
 }
