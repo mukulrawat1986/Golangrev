@@ -7,14 +7,14 @@ func printer(w []string) {
 		fmt.Printf("%s", word)
 	}
 	fmt.Printf("\n")
-
-	w[2] = "blue"
 }
 
 func main() {
+	words := make([]string, 4)
+	words[0] = "The"
+	words[1] = "Quick"
+	words[2] = "Brown"
+	words[3] = "Fox"
 
-	words := []string{"the", "quick", "brown", "fox"}
-
-	printer(words)
 	printer(words)
 }
