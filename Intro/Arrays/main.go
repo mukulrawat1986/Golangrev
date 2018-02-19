@@ -20,4 +20,9 @@ func main() {
 	printer(words)
 	words = append(words, "Jumps")
 	fmt.Printf("%d %d\n", len(words), cap(words))
+
+	// copying a slice
+	newWords := make([]string, 4)
+	copy(newWords, words)
+	printer(newWords)
 }
