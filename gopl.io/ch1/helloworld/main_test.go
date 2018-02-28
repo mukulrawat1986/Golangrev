@@ -14,7 +14,8 @@ func TestHello(t *testing.T) {
 	Hello(&buffer, msg)
 
 	got := buffer.String()
-	want := msg
+	// fmt.Printf("%#v\n", got)
+	want := msg + "\n"
 
 	if got != want {
 		t.Errorf("got '%s' want '%s'", got, want)
