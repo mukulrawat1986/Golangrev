@@ -17,6 +17,6 @@ func TestHello(t *testing.T) {
 	want := msg
 
 	if got != want {
-		t.Errorf("got '%s' want '%s'")
+		t.Errorf("got '%s' want '%s'", got, want)
 	}
 }
