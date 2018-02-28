@@ -11,7 +11,7 @@ func TestHello(t *testing.T) {
 
 	// the msg to be passed to the function
 	msg := "Hello World"
-	Hello(buffer, msg)
+	Hello(&buffer, msg)
 
 	got := buffer.String()
 	want := msg
