@@ -8,18 +8,21 @@ import (
 func TestEcho(t *testing.T) {
 	// we will mock our command line arguments by using a slice of strings
 	// In our mock the fist string is filename, not to be printed.
-	args := []string{"filename", "hello", "world"}
 
-	// buffer to hold our output
-	buffer := bytes.Buffer{}
+	t.Run("test with some arguments", func(t *testing.T) {
+		args := []string{"filename", "hello", "world"}
 
-	// call the function
-	Echo(&buffer, args)
+		// buffer to hold our output
+		buffer := bytes.Buffer{}
 
-	got := buffer.String()
-	want := args[1] + " " + args[2] + "\n"
+		// call the function
+		Echo(&buffer, args)
 
-	if got != want {
-		t.Errorf("got '%s' want '%s'", got, want)
-	}
+		got := buffer.String()
+		want := args[1] + " " + args[2] + "\n"
+
+		if got != want {
+			t.Errorf("got '%s' want '%s'", got, want)
+		}
+	})
 }
