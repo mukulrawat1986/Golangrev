@@ -4,6 +4,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 	"os"
 )
@@ -27,4 +28,9 @@ func Count(counts map[string]int, r io.Reader) {
 }
 
 func Print(w io.Writer, counts map[string]int) {
+	for line, n := range counts {
+		if n > 1 {
+			fmt.Fprintf(w, "%d\t%s\n", n, line)
+		}
+	}
 }
