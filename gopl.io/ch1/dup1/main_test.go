@@ -28,3 +28,21 @@ func TestCount(t *testing.T) {
 		t.Errorf("got '%#v' want '%#v'", got, want)
 	}
 }
+
+func TestPrint(t *testing.T) {
+	// the second dependency in our program is printing to stdout, so we will mock it
+	// by using a bytes buffer and store the output there
+	buffer := bytes.Buffer{}
+
+	counts := map[string]int{"Hello": 2, "Hello World": 2, "World": 1}
+
+	// call the function
+	Print(&buffer, counts)
+
+	got := buffer.String()
+	want := "2\tHello\n2\tHello World\n"
+
+	if got != want {
+		t.Errorf("got '%#v' want '%#v'", got, want)
+	}
+}
