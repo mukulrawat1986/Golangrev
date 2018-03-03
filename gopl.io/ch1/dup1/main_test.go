@@ -9,7 +9,7 @@ import (
 func TestCount(t *testing.T) {
 	// our dependency is the source of input which we will mock using a
 	// buffer of bytes, hence satisfying the io.Reader interface
-	b := []bytes{"Hello\n", "Hello\n", "Hello World\n", "World\n"}
+	b := []byte("Hello\nHello\nHello World\nWorld\n")
 
 	// set up out io.Reader
 	// this returns a *Buffer which satisfies io.Reader
@@ -22,9 +22,9 @@ func TestCount(t *testing.T) {
 	Count(counts, r)
 
 	got := counts
-	want := map[string]int{"Hello\n": 2, "Hello World\n": 1, "World\n": 1}
+	want := map[string]int{"Hello": 2, "Hello World": 1, "World": 1}
 
 	if !reflect.DeepEqual(got, want) {
-		t.Errorf("got '%#v' want '%#v'")
+		t.Errorf("got '%#v' want '%#v'", got, want)
 	}
 }
