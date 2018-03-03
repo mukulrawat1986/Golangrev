@@ -25,3 +25,6 @@ func Count(counts map[string]int, r io.Reader) {
 		counts[input.Text()]++
 	}
 }
+
+func Print(w io.Writer, counts map[string]int) {
+}
