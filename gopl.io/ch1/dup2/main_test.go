@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"os"
 	"reflect"
 	"testing"
 )
@@ -28,6 +29,30 @@ func TestCount(t *testing.T) {
 
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got '%#v' want '%#v'", got, want)
+		}
+	})
+
+	t.Run("when file names are given", func(t *testing.T) {
+		// we can test the files by creating two temporary files with some input in it.
+		filenames := []string{"test1.txt", "test2.txt"}
+
+		// set up our map
+		counts := make(map[string]int)
+
+		for _, filename := range filenames {
+			f, err := os.Open(filename)
+			if err != nil {
+				t.Errorf("Error opening file %v", filename)
+			}
+			defer f.Close()
+			Count(f, counts)
+		}
+
+		got := counts
+		want := map[string]int{"Hello": 2, "World": 2, "Hello World": 1}
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got '%#v', want '%#v'", got, want)
 		}
 	})
 }
