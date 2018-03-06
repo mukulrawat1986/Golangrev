@@ -3,6 +3,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"os"
@@ -27,6 +28,10 @@ func main() {
 }
 
 func Count(r io.Reader, counts map[string]int) {
+	input := bufio.NewScanner(r)
+	for input.Scan() {
+		counts[input.Text()]++
+	}
 }
 
 func Print(w io.Writer, counts map[string]int) {
