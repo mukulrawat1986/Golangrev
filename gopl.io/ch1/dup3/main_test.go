@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"reflect"
 	"testing"
 )
@@ -12,15 +11,15 @@ func TestCount(t *testing.T) {
 	b := []byte("Hello\nHello\nHello World\nWorld\n")
 
 	// create our buffer
-	buffer := bytes.NewBuffer(b)
+	// buffer := bytes.NewBuffer(b)
 
 	// create our map
 	counts := make(map[string]int)
 
-	Count(buffer, counts)
+	Count(b, counts)
 
 	got := counts
-	want := map[string]int{"Hello": 3, "World": 2}
+	want := map[string]int{"Hello": 2, "World": 1, "Hello World": 1}
 
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("got '%#v' want '%#v'", got, want)
