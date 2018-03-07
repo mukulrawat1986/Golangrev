@@ -35,4 +35,9 @@ func Count(r io.Reader, counts map[string]int) {
 }
 
 func Print(w io.Writer, counts map[string]int) {
+	for line, n := range counts {
+		if n > 1 {
+			fmt.Fprintf(w, "%d\t%s\n", n, line)
+		}
+	}
 }
