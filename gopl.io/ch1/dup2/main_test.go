@@ -58,4 +58,19 @@ func TestCount(t *testing.T) {
 }
 
 func TestPrint(t *testing.T) {
+	// while printing out the map we have a dependency in using the print command
+	// so we will use a buffer of bytes to store the output
+	buffer := bytes.Buffer{}
+
+	// map
+	counts := map[string]int{"Hello": 1, "World": 3, "Hello World": 2}
+
+	Print(&buffer, counts)
+
+	got := buffer.String()
+	want := "3\tWorld\n2\tHello World\n"
+
+	if got != want {
+		t.Errorf("got '%#v' want '%#v'", got, want)
+	}
 }
