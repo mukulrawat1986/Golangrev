@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"reflect"
 	"testing"
 )
@@ -27,4 +28,13 @@ func TestCount(t *testing.T) {
 }
 
 func TestPrint(t *testing.T) {
+	buffer := bytes.Buffer{}
+	counts := map[string]int{"Hello": 2, "World": 1, "Hello World": 1}
+	Print(&buffer, counts)
+
+	got := buffer.String()
+	want := "2\tHello\n"
+	if got != want {
+		t.Errorf("got '%s' want '%s'", got, want)
+	}
 }
