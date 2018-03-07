@@ -9,6 +9,13 @@ import (
 
 func TestCount(t *testing.T) {
 
+	assertEquality := func(t *testing.T, got map[string]int, want map[string]int) {
+		t.Helper()
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got '%#v', want '%#v'", got, want)
+		}
+	}
+
 	t.Run("when command line argument is given", func(t *testing.T) {
 		// Our dependency in the program is our source of input which we will mock
 		// using a buffer of bytes, hence satisfying io.Reader interface.
@@ -24,12 +31,8 @@ func TestCount(t *testing.T) {
 		// Call the function
 		Count(buffer, counts)
 
-		got := counts
 		want := map[string]int{"Hello": 3, "Hello World": 1, "World": 2}
-
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got '%#v' want '%#v'", got, want)
-		}
+		assertEquality(t, counts, want)
 	})
 
 	t.Run("when file names are given", func(t *testing.T) {
@@ -48,12 +51,9 @@ func TestCount(t *testing.T) {
 			Count(f, counts)
 		}
 
-		got := counts
 		want := map[string]int{"Hello": 2, "World": 2, "Hello World": 1}
 
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got '%#v', want '%#v'", got, want)
-		}
+		assertEquality(t, counts, want)
 	})
 }
 
