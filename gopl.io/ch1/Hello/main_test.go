@@ -28,4 +28,22 @@ func TestHello(t *testing.T) {
 			t.Errorf("got '%s' want '%s'", got, want)
 		}
 	})
+
+	t.Run("when we don't pass an argument to our function", func(t *testing.T) {
+		// Initiailze an empty struct of bytes.Buffer
+		buffer := bytes.Buffer{}
+
+		// pass the buffer to our function
+		Hello(&buffer, "")
+
+		// what was stored in the buffer
+		got := buffer.String()
+
+		// what we want
+		want := "\n"
+
+		if got != want {
+			t.Errorf("got '%s' want '%s'", got, want)
+		}
+	})
 }
