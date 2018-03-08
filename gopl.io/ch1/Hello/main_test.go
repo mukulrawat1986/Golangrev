@@ -11,19 +11,21 @@ func TestHello(t *testing.T) {
 	// We will pass a pointer to a buffer of bytes to our function
 	// and the output will be stored there which we can compare.
 
-	// Initialize an empty struct of bytes.Buffer
-	buffer := bytes.Buffer{}
+	t.Run("when we pass an argument to our function", func(t *testing.T) {
+		// Initialize an empty struct of bytes.Buffer
+		buffer := bytes.Buffer{}
 
-	// pass the buffer to our function
-	Hello(&buffer, "Hello World")
+		// pass the buffer to our function
+		Hello(&buffer, "Hello World")
 
-	// what was stored in the buffer
-	got := buffer.String()
+		// what was stored in the buffer
+		got := buffer.String()
 
-	// what we want
-	want := "Hello World\n"
+		// what we want
+		want := "Hello World\n"
 
-	if got != want {
-		t.Errorf("got '%s' want '%s'", got, want)
-	}
+		if got != want {
+			t.Errorf("got '%s' want '%s'", got, want)
+		}
+	})
 }
