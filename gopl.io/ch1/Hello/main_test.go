@@ -11,6 +11,13 @@ func TestHello(t *testing.T) {
 	// We will pass a pointer to a buffer of bytes to our function
 	// and the output will be stored there which we can compare.
 
+	assertCorrectMessage := func(t *testing.T, got string, want string) {
+		t.Helper()
+		if got != want {
+			t.Errorf("got '%s' want '%s'", got, want)
+		}
+	}
+
 	t.Run("when we pass an argument to our function", func(t *testing.T) {
 		// Initialize an empty struct of bytes.Buffer
 		buffer := bytes.Buffer{}
@@ -24,9 +31,8 @@ func TestHello(t *testing.T) {
 		// what we want
 		want := "Hello World\n"
 
-		if got != want {
-			t.Errorf("got '%s' want '%s'", got, want)
-		}
+		// assert if correct
+		assertCorrectMessage(t, got, want)
 	})
 
 	t.Run("when we don't pass an argument to our function", func(t *testing.T) {
@@ -42,8 +48,7 @@ func TestHello(t *testing.T) {
 		// what we want
 		want := "\n"
 
-		if got != want {
-			t.Errorf("got '%s' want '%s'", got, want)
-		}
+		// assert if correct
+		assertCorrectMessage(t, got, want)
 	})
 }
