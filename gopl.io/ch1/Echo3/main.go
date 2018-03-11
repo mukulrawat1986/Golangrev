@@ -2,12 +2,14 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"os"
+	"strings"
 )
 
 func Echo(w io.Writer, args []string) {
-
+	fmt.Fprintf(w, "%s\n", strings.Join(args[1:], " "))
 }
 
 func main() {
