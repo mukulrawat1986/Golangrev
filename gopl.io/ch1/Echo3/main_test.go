@@ -11,22 +11,24 @@ func TestEcho(t *testing.T) {
 	// So we will inject the dependency by using a slice of strings and
 	// bytes.Buffer{} for printing
 
-	// slice of string that works as a command line argument
-	args := []string{"Filename", "Hello", "World"}
+	t.Run("when command line arguments are given", func(t *testing.T) {
+		// slice of string that works as a command line argument
+		args := []string{"Filename", "Hello", "World"}
 
-	// bytes buffer to store the output
-	buffer := bytes.Buffer{}
+		// bytes buffer to store the output
+		buffer := bytes.Buffer{}
 
-	// pass the dependencies to our function
-	Echo(&buffer, args)
+		// pass the dependencies to our function
+		Echo(&buffer, args)
 
-	// what we got
-	got := buffer.String()
+		// what we got
+		got := buffer.String()
 
-	// what we want
-	want := args[1] + " " + args[2] + "\n"
+		// what we want
+		want := args[1] + " " + args[2] + "\n"
 
-	if got != want {
-		t.Errorf("got '%#v' want '%#v'", got, want)
-	}
+		if got != want {
+			t.Errorf("got '%#v' want '%#v'", got, want)
+		}
+	})
 }
