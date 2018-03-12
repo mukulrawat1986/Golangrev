@@ -11,6 +11,13 @@ func TestEcho(t *testing.T) {
 	// So we will inject the dependency by using a slice of strings and
 	// bytes.Buffer{} for printing
 
+	assertCorrectMessage := func(t *testing.T, got string, want string) {
+		t.Helper()
+		if got != want {
+			t.Errorf("got '%#v' want '%#v'", got, want)
+		}
+	}
+
 	t.Run("when command line arguments are given", func(t *testing.T) {
 		// slice of string that works as a command line argument
 		args := []string{"Filename", "Hello", "World"}
@@ -27,9 +34,7 @@ func TestEcho(t *testing.T) {
 		// what we want
 		want := args[1] + " " + args[2] + "\n"
 
-		if got != want {
-			t.Errorf("got '%#v' want '%#v'", got, want)
-		}
+		assertCorrectMessage(t, got, want)
 	})
 
 	t.Run("when command loine arguments are not give", func(t *testing.T) {
@@ -48,8 +53,6 @@ func TestEcho(t *testing.T) {
 		// what we want
 		want := "\n"
 
-		if got != want {
-			t.Errorf("got '%#v' want '%#v'", got, want)
-		}
+		assertCorrectMessage(t, got, want)
 	})
 }
