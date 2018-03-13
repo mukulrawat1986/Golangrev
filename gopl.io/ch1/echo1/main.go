@@ -2,6 +2,7 @@
 package main
 
 import (
+	"os"
 	"fmt"
 	"io"
 )
@@ -17,5 +18,5 @@ func Echo(writer io.Writer, args []string) {
 }
 
 func main() {
-
+	Echo(os.Stdout, os.Args)
 }
