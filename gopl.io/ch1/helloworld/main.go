@@ -1,15 +1,16 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
+	"io"
+	"os"
 )
 
 // Hello function greets the person or prints out "Hello World"
-func Hello(b *bytes.Buffer, name string) {
-	fmt.Fprintf(b, "Hello %s!\n", name)
+func Hello(w io.Writer, name string) {
+	fmt.Fprintf(w, "Hello %s!\n", name)
 }
 
 func main() {
-
+	Hello(os.Stdout, "")
 }
