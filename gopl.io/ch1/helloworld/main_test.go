@@ -12,9 +12,9 @@ func TestHello(t *testing.T) {
 	Hello(&buffer, "Mukul")
 
 	got := buffer.String()
-	want := "Hello Mukul!"
+	want := "Hello Mukul!\n"
 
 	if got != want {
-		t.Errorf("want '%s' got '%s'", want, got)
+		t.Errorf("want '%#v' got '%#v'", want, got)
 	}
 }
