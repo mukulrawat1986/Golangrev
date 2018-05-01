@@ -20,4 +20,18 @@ func TestHello(t *testing.T) {
 			t.Errorf("want '%#v' got '%#v'", want, got)
 		}
 	})
+
+	t.Run("when empty string is passed", func(t *testing.T) {
+		// create a buffer using bytes.Buffer
+		buffer := bytes.Buffer{}
+
+		Hello(&buffer, "")
+
+		got := buffer.String()
+		want := "Hello, World!\n"
+
+		if got != want {
+			t.Errorf("want '%#v' got '%#v'", want, got)
+		}
+	})
 }
