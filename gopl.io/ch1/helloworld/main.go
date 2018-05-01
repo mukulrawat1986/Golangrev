@@ -8,7 +8,11 @@ import (
 
 // Hello function greets the person or prints out "Hello World"
 func Hello(w io.Writer, name string) {
-	fmt.Fprintf(w, "Hello %s!\n", name)
+	if len(name) != 0 {
+		fmt.Fprintf(w, "Hello %s!\n", name)
+	} else {
+		fmt.Fprintln(w, "Hello, World!")
+	}
 }
 
 func main() {
