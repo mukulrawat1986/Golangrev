@@ -6,22 +6,25 @@ import (
 )
 
 func TestEcho(t *testing.T) {
-	// create a buffer using bytes.Buffer
-	buffer := bytes.Buffer{}
 
-	// use a slice to store the arguments
-	args := []string{
-		"filename",
-		"Hello",
-		"World",
-	}
+	t.Run("when command line arguments are passed", func(t *testing.T) {
+		// create a buffer using bytes.Buffer
+		buffer := bytes.Buffer{}
 
-	Echo(&buffer, args)
+		// use a slice to store the arguments
+		args := []string{
+			"filename",
+			"Hello",
+			"World",
+		}
 
-	got := buffer.String()
-	want := args[1] + " " + args[2] + "\n"
+		Echo(&buffer, args)
 
-	if got != want {
-		t.Errorf("got '%#v' want '%#v'", got, want)
-	}
+		got := buffer.String()
+		want := args[1] + " " + args[2] + "\n"
+
+		if got != want {
+			t.Errorf("got '%#v' want '%#v'", got, want)
+		}
+	})
 }
