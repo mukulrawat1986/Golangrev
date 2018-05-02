@@ -27,4 +27,20 @@ func TestEcho(t *testing.T) {
 			t.Errorf("got '%#v' want '%#v'", got, want)
 		}
 	})
+
+	t.Run("when command line arguments are not passed", func(t *testing.T) {
+		// create a buffer of bytes.Buffer
+		buffer := bytes.Buffer{}
+
+		args := []string{"filename"}
+
+		Echo(&buffer, args)
+
+		got := buffer.String()
+		want := "\n"
+
+		if got != want {
+			t.Errorf("got '%s' want '%s'", got, want)
+		}
+	})
 }
