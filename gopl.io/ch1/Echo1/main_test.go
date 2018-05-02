@@ -16,7 +16,7 @@ func TestEcho(t *testing.T) {
 		"World",
 	}
 
-	Echo(args, buffer)
+	Echo(&buffer, args)
 
 	got := buffer.String()
 	want := args[1] + " " + args[2] + "\n"
