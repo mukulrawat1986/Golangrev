@@ -7,6 +7,13 @@ import (
 
 func TestEcho(t *testing.T) {
 
+	assertResult := func(t *testing.T, got, want string) {
+		t.Helper()
+		if got != want {
+			t.Errorf("got '%#v' want '%#v'", got, want)
+		}
+	}
+
 	t.Run("when arguments are given", func(t *testing.T) {
 		// create a buffer
 		buffer := bytes.Buffer{}
@@ -23,9 +30,7 @@ func TestEcho(t *testing.T) {
 		got := buffer.String()
 		want := args[1] + " " + args[2] + "\n"
 
-		if got != want {
-			t.Errorf("got '%#v' want '%#v'", got, want)
-		}
+		assertResult(t, got, want)
 	})
 
 	t.Run("when no arguments are given", func(t *testing.T) {
@@ -40,8 +45,6 @@ func TestEcho(t *testing.T) {
 		got := buffer.String()
 		want := "\n"
 
-		if got != want {
-			t.Errorf("got '%#v' want '%#v'", got, want)
-		}
+		assertResult(t, got, want)
 	})
 }
