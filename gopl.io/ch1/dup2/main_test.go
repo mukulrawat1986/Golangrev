@@ -47,4 +47,27 @@ func TestDup(t *testing.T) {
 			t.Errorf("got '%#v' want '%#v'", got, want)
 		}
 	})
+
+	t.Run("when a file handler is passed", func(t *testing.T) {
+		// create a buffer to store output of type bytes.Buffer
+		outBuffer := &bytes.Buffer{}
+
+		// create an empty input buffer
+		inBuffer := &bytes.Buffer{}
+
+		// create a buffer to pass through as file handler
+		fileHandler := bytes.NewBufferString("Hello\nhello\nHello\nhello world\nHello\nhello\n")
+
+		Dup(inBuffer, outBuffer, fileHandler)
+
+		got := makeMap(outBuffer.String())
+		want := map[string]int{
+			"Hello": 3,
+			"hello": 2,
+		}
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got '%#v' want '%#v'", got, want)
+		}
+	})
 }
