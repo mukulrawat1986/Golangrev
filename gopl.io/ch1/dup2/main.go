@@ -38,5 +38,18 @@ func Dup(in io.Reader, out io.Writer, fileReader io.ReadWriter) {
 }
 
 func main() {
-
+	files := os.Args[1:]
+	if len(files) == 0 {
+		Dup(os.Stdin, os.Stdout, nil)
+	} else {
+		for _, arg := range files {
+			f, err := os.Open(arg)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "dup:%v\n", err)
+				continue
+			}
+			defer f.Close()
+			Dup(nil, os.Stdout, f)
+		}
+	}
 }
