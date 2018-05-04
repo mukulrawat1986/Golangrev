@@ -2,10 +2,29 @@ package main
 
 import (
 	"bytes"
+	"reflect"
+	"strconv"
+	"strings"
 	"testing"
 )
 
 func TestDup(t *testing.T) {
+
+	// makeMap converts our string to a map
+	makeMap := func(input string) map[string]int {
+		result := make(map[string]int)
+		in := strings.Split(input, "\n")
+
+		for _, str := range in {
+			if str != "" {
+				temp := strings.Split(str, "\t")
+				val, _ := strconv.Atoi(temp[1])
+				result[temp[0]] = val
+			}
+		}
+		return result
+	}
+
 	// create a buffer of bytes.Buffer where the output is stored
 	outBuffer := &bytes.Buffer{}
 
@@ -17,10 +36,13 @@ func TestDup(t *testing.T) {
 
 	Dup(inputBuffer, outBuffer)
 
-	got := outBuffer.String()
-	want := "Hello\t2\nhello\t2\n"
+	got := makeMap(outBuffer.String())
+	want := map[string]int{
+		"Hello": 2,
+		"hello": 2,
+	}
 
-	if got != want {
+	if !reflect.DeepEqual(got, want) {
 		t.Errorf("got '%#v' want '%#v'", got, want)
 	}
 }
