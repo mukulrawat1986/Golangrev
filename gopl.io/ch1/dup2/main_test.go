@@ -25,24 +25,29 @@ func TestDup(t *testing.T) {
 		return result
 	}
 
-	// create a buffer to store output of type bytes.Buffer
-	outBuffer := &bytes.Buffer{}
+	t.Run("when no file is given, input from console", func(t *testing.T) {
+		// create a buffer to store output of type bytes.Buffer
+		outBuffer := &bytes.Buffer{}
 
-	// create an input string
-	input := "Hello\nhello\nHello\nhello world\nHello\nhello\n"
+		// create an input string
+		input := "Hello\nhello\nHello\nhello world\nHello\nhello\n"
 
-	// create an input buffer using the input string
-	inBuffer := bytes.NewBufferString(input)
+		// create an input buffer using the input string
+		inBuffer := bytes.NewBufferString(input)
 
-	Dup(inBuffer, outBuffer)
+		// use a slice to mock the os.Args
+		args := []string{"filename"}
 
-	got := makeMap(outBuffer.String())
-	want := map[string]int{
-		"Hello": 3,
-		"hello": 2,
-	}
+		Dup(inBuffer, outBuffer, args[1:])
 
-	if !reflect.DeepEqual(got, want) {
-		t.Errorf("got '%#v' want '%#v'", got, want)
-	}
+		got := makeMap(outBuffer.String())
+		want := map[string]int{
+			"Hello": 3,
+			"hello": 2,
+		}
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got '%#v' want '%#v'", got, want)
+		}
+	})
 }
