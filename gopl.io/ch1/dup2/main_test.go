@@ -35,10 +35,7 @@ func TestDup(t *testing.T) {
 		// create an input buffer using the input string
 		inBuffer := bytes.NewBufferString(input)
 
-		// use a slice to mock the os.Args
-		args := []string{"filename"}
-
-		Dup(inBuffer, outBuffer, args[1:])
+		Dup(inBuffer, outBuffer, nil)
 
 		got := makeMap(outBuffer.String())
 		want := map[string]int{
