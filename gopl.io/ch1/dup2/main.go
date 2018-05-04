@@ -9,25 +9,28 @@ import (
 
 // Dup prints the count and text of lines that appear more than once
 // in the input. It reads from the stdin or from a list of named files.
-func Dup(in io.Reader, out io.Writer) {
+func Dup(in io.Reader, out io.Writer, file io.ReadWriter) {
 
-	// counts store the string and the count of it
-	counts := make(map[string]int)
+	if file == nil {
 
-	// create a scanner object on the in io.Reader
-	input := bufio.NewScanner(in)
+		// counts store the string and the count of it
+		counts := make(map[string]int)
 
-	for input.Scan() {
-		counts[input.Text()]++
-	}
+		// create a scanner object on the in io.Reader
+		input := bufio.NewScanner(in)
 
-	if err := input.Err(); err != nil {
-		fmt.Fprintf(os.Stderr, "dup:%v\n", err)
-	}
+		for input.Scan() {
+			counts[input.Text()]++
+		}
 
-	for line, n := range counts {
-		if n > 1 {
-			fmt.Fprintf(out, "%s\t%d\n", line, n)
+		if err := input.Err(); err != nil {
+			fmt.Fprintf(os.Stderr, "dup:%v\n", err)
+		}
+
+		for line, n := range counts {
+			if n > 1 {
+				fmt.Fprintf(out, "%s\t%d\n", line, n)
+			}
 		}
 	}
 }
