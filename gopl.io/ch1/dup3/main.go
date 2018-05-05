@@ -5,12 +5,23 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 // Dup function takes a slice of byte and prints out strings
 // which occur more than once in it.
 func Dup(data []byte, out io.Writer) {
+	counts := make(map[string]int)
 
+	for _, line := range strings.Split(string(data), "\n") {
+		counts[line]++
+	}
+
+	for line, n := range counts {
+		if n > 1 {
+			fmt.Fprintf(out, "%s\t%d\n", line, n)
+		}
+	}
 }
 
 func main() {
