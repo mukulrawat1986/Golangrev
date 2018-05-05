@@ -6,16 +6,19 @@ import (
 )
 
 func TestHello(t *testing.T) {
-	// set up a buffer of bytes.Buffer
-	// Test function will print here
-	buffer := bytes.Buffer{}
 
-	Hello(&buffer, "Chris")
+	t.Run("when a name is sent", func(t *testing.T) {
+		// set up a buffer of bytes.Buffer
+		// Test function will print here
+		buffer := bytes.Buffer{}
 
-	got := buffer.String()
-	want := "Hello Chris\n"
+		Hello(&buffer, "Chris")
 
-	if got != want {
-		t.Errorf("got '%#v' want '%#v'", got, want)
-	}
+		got := buffer.String()
+		want := "Hello Chris\n"
+
+		if got != want {
+			t.Errorf("got '%#v' want '%#v'", got, want)
+		}
+	})
 }
