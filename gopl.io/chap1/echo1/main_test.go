@@ -6,23 +6,25 @@ import (
 )
 
 func TestEcho(t *testing.T) {
-	// create a buffer to store the print output
-	buffer := bytes.Buffer{}
+	t.Run("when arguments are passed", func(t *testing.T) {
+		// create a buffer to store the print output
+		buffer := bytes.Buffer{}
 
-	// use a slice of string to store the command line arguments
-	args := []string{
-		"filename",
-		"Hello",
-		"World",
-	}
+		// use a slice of string to store the command line arguments
+		args := []string{
+			"filename",
+			"Hello",
+			"World",
+		}
 
-	// Echo function called
-	Echo(&buffer, args)
+		// Echo function called
+		Echo(&buffer, args)
 
-	got := buffer.String()
-	want := args[1] + " " + args[2] + "\n"
+		got := buffer.String()
+		want := args[1] + " " + args[2] + "\n"
 
-	if got != want {
-		t.Errorf("got %#v want %#v", got, want)
-	}
+		if got != want {
+			t.Errorf("got %#v want %#v", got, want)
+		}
+	})
 }
