@@ -26,5 +26,5 @@ func Dup(i io.Reader, w io.Writer) {
 }
 
 func main() {
-
+	Dup(os.Stdin, os.Stdout)
 }
