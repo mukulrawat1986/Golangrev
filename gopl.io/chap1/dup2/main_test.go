@@ -19,8 +19,8 @@ func makeMap(input string) map[string]int {
 			val, _ := strconv.Atoi(temp[1])
 			result[temp[0]] = val
 		}
-		return result
 	}
+	return result
 }
 
 func TestDup(t *testing.T) {
