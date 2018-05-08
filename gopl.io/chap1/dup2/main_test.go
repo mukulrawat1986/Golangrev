@@ -38,7 +38,7 @@ func TestDup(t *testing.T) {
 
 	got := makeMap(outputBuffer.String())
 	want := map[string]int{
-		"Hello":       3,
+		"Hello":       2,
 		"Hello World": 2,
 	}
 
