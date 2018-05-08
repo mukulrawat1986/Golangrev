@@ -26,5 +26,18 @@ func Dup(i io.Reader, w io.Writer) {
 }
 
 func main() {
-
+	files := os.Args[1:]
+	if len(files) == 0 {
+		Dup(os.Stdin, os.Stdout)
+	} else {
+		for _, arg := range files {
+			f, err := os.Open(arg)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "dup: %v\n", err)
+				continue
+			}
+			defer f.Close()
+			Dup(f, os.Stdout)
+		}
+	}
 }
