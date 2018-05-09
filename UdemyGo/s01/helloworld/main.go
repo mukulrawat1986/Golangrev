@@ -8,7 +8,8 @@ func main() {
 }
 
 func concepts() {
-	i := 12 // 32 bits by default
-	firstName := "John"
-	fmt.Println(firstName, i)
+	firstName := "Jim\n\n"
+	fmt.Printf("%s", firstName)
+	secondName := `Jim\n\n`
+	fmt.Printf("%s", secondName)
 }
