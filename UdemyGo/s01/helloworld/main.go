@@ -8,9 +8,7 @@ func main() {
 }
 
 func concepts() {
+	i := 12 // 32 bits by default
 	firstName := "John"
-	K := 14
-
-	// difference between upper and lower case
-	fmt.Println(firstName, K)
+	fmt.Println(firstName, i)
 }
