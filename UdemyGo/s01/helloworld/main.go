@@ -8,9 +8,9 @@ func main() {
 }
 
 func concepts() {
-	k := 12
+	firstName := "John"
 	K := 14
 
 	// difference between upper and lower case
-	fmt.Println(k, K)
+	fmt.Println(firstName, K)
 }
