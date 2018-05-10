@@ -30,4 +30,17 @@ func main() {
 	)
 
 	fmt.Println(a, b, c, d, e, f)
+
+	// introducing iota which is a constant generator.
+	// It starts with 0 and keeps on incrementing by one.
+	const (
+		a2 = iota + 1
+		b2
+		c2
+		d2 = a2 * 10
+		e2
+		f2 = iota
+	)
+
+	fmt.Println(a2, b2, c2, d2, e2, f2)
 }
