@@ -43,4 +43,14 @@ func main() {
 	)
 
 	fmt.Println(a2, b2, c2, d2, e2, f2)
+
+	const (
+		a3 = iota + 1
+		b3 = a3 << 1
+		c3 = b3 << 1
+		d3 = c3 << 1
+		e3 = d3 << 1
+	)
+
+	fmt.Println(a3, b3, c3, d3, e3)
 }
