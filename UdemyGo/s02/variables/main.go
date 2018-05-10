@@ -14,5 +14,11 @@ func main() {
 	// another way of declaration and initialization, not much in use
 	// use uint8
 	var k1 uint8 = 20
-	fmt.Printf("%d - %T", k1, k1)
+	fmt.Printf("%d - %T\n", k1, k1)
+
+	var k2 uint16 = 30
+
+	// kind of type cohersion
+	k2 = uint16(k1)
+	fmt.Printf("%d - %T\n", k2, k2)
 }
