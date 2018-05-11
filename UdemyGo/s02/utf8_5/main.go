@@ -13,4 +13,6 @@ func main() {
 	fmt.Printf("%x\n", r)
 
 	fmt.Println(string(r))
+	fmt.Printf("%q\n", r)
+	fmt.Printf("%q\n", s)
 }
