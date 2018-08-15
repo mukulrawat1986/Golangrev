@@ -11,8 +11,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	// use r.URL.Path to check whether the request URL path
 	// exactly matches "/". If it does not, return a 404.
 	if r.URL.Path != "/" {
-		w.WriteHeader(404)
-		w.Write([]byte("Not Found"))
+		http.NotFound(w, r)
 		return
 	}
 
