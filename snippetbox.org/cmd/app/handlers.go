@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"html/template"
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -12,7 +14,31 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	w.Write([]byte("Hello from Snippetbox\n"))
+
+	// Initialize a slice containing the paths to the two files.
+	files := []string{
+		"./web/html/base.html",
+		"./web/html/home.page.html",
+	}
+
+	// use the templates.ParseFiles() function to read the file and store the
+	// templates in a template set.
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "Internal Server Error", 500)
+		return
+	}
+
+	// Use the ExecuteTemplate() method to execute the base template and
+	// write its content to our ResponseWriter.
+	// The last parameter to ExecuteTemplate represents any
+	// dynamic data that we want to pass in which for now we will leave as nil.
+	err = ts.ExecuteTemplate(w, "base", nil)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal Server Error", 500)
+	}
 }
 
 // ShowSnippet Handler function
