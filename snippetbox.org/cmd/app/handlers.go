@@ -6,6 +6,7 @@ import (
 	"strconv"
 )
 
+// Home handler
 func Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
@@ -14,7 +15,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello from Snippetbox\n"))
 }
 
-// Add a placeholder ShowSnippet Handler function
+// ShowSnippet Handler function
 func ShowSnippet(w http.ResponseWriter, r *http.Request) {
 	// Extract the value of the id parameter from the query string
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
@@ -29,7 +30,7 @@ func ShowSnippet(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Display a specific snippet (ID %d)...", id)
 }
 
-// Add a placeholder NewSnipper Handler function
+// NewSnippet Handler function
 func NewSnippet(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Display the new snippet form....\n"))
 }
