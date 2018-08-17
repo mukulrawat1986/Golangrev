@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 )
 
+// RenderHTML renders our templates and takes the exact page you wanna render
 func (app *App) RenderHTML(w http.ResponseWriter, page string) {
 	files := []string{
 		filepath.Join(app.HTMLDir, "base.html"),
