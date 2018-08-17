@@ -8,8 +8,8 @@ import (
 
 func (app *App) RenderHTML(w http.ResponseWriter, page string) {
 	files := []string{
-		filepath.Join(app.HTMLDIR, "base.html"),
-		filepath.Join(app.HTMLDIR, page),
+		filepath.Join(app.HTMLDir, "base.html"),
+		filepath.Join(app.HTMLDir, page),
 	}
 
 	ts, err := template.ParseFiles(files...)
