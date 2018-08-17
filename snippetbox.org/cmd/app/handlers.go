@@ -1,6 +1,7 @@
 package main
 
 import (
+	"path/filepath"
 	"fmt"
 	"html/template"
 	"log"
@@ -9,16 +10,18 @@ import (
 )
 
 // Home handler
-func Home(w http.ResponseWriter, r *http.Request) {
+func (app *App) Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
 	}
 
 	// Initialize a slice containing the paths to the two files.
+	// Home handler function is a method against App, so we can access 
+	// its fields
 	files := []string{
-		"./web/html/base.html",
-		"./web/html/home.page.html",
+		filepath.Join(app.HTMLDIR, "base.html"),
+		filepath.Join(app.HTMLDIR, "home.page.html")
 	}
 
 	// use the templates.ParseFiles() function to read the file and store the
@@ -42,7 +45,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 }
 
 // ShowSnippet Handler function
-func ShowSnippet(w http.ResponseWriter, r *http.Request) {
+func (app *App) ShowSnippet(w http.ResponseWriter, r *http.Request) {
 	// Extract the value of the id parameter from the query string
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
 
@@ -57,6 +60,6 @@ func ShowSnippet(w http.ResponseWriter, r *http.Request) {
 }
 
 // NewSnippet Handler function
-func NewSnippet(w http.ResponseWriter, r *http.Request) {
+func (app *App) NewSnippet(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Display the new snippet form....\n"))
 }
