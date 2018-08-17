@@ -1,11 +1,20 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"net/http"
 )
 
 func main() {
+
+	// Define command line flags for the network address and location of
+	// the static files directory.
+	addr := flag.String("addr", ":4000", "HTTP Network Address")
+	staticDir := flag.String("static-dir", "./web/static", "Path to static assets")
+
+	flag.Parse()
+
 	// create a new servemux
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", Home)
@@ -14,7 +23,7 @@ func main() {
 
 	// create a file server which serves files out of "./web/static"
 	// The path is relative to our project repository root
-	fileServer := http.FileServer(http.Dir("./web/static"))
+	fileServer := http.FileServer(http.Dir(*staticDir))
 
 	// use mux.Handle to register fileServer as a handler for all url
 	// paths that start with "/static/".
@@ -23,7 +32,7 @@ func main() {
 	mux.Handle("/static/", http.StripPrefix("/static",
 		fileServer))
 
-	log.Println("Starting server on :4000")
-	err := http.ListenAndServe(":4000", mux)
+	log.Printf("Starting server on %s", *addr)
+	err := http.ListenAndServe(*addr, mux)
 	log.Fatal(err)
 }
