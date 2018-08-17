@@ -12,14 +12,20 @@ func main() {
 	// the static files directory.
 	addr := flag.String("addr", ":4000", "HTTP Network Address")
 	staticDir := flag.String("static-dir", "./web/static", "Path to static assets")
+	htmlDir := flag.String("html-dir", "./web/html", "Path to HTML Template")
 
 	flag.Parse()
 
+	// Initialize a new instance of App containing the dependencies
+	app := &App{
+		HTMLDIR: *htmlDir,
+	}
+
 	// create a new servemux
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", Home)
-	mux.HandleFunc("/snippet", ShowSnippet)
-	mux.HandleFunc("/snippet/new", NewSnippet)
+	mux.HandleFunc("/", app.Home)
+	mux.HandleFunc("/snippet", app.ShowSnippet)
+	mux.HandleFunc("/snippet/new", app.NewSnippet)
 
 	// create a file server which serves files out of "./web/static"
 	// The path is relative to our project repository root
