@@ -18,27 +18,11 @@ func main() {
 
 	// Initialize a new instance of App containing the dependencies
 	app := &App{
-		HTMLDIR: *htmlDir,
+		HTMLDir:   *htmlDir,
+		StaticDir: *staticDir,
 	}
 
-	// create a new servemux
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", app.Home)
-	mux.HandleFunc("/snippet", app.ShowSnippet)
-	mux.HandleFunc("/snippet/new", app.NewSnippet)
-
-	// create a file server which serves files out of "./web/static"
-	// The path is relative to our project repository root
-	fileServer := http.FileServer(http.Dir(*staticDir))
-
-	// use mux.Handle to register fileServer as a handler for all url
-	// paths that start with "/static/".
-	// For matching paths, we strip the /static/ prefix before the
-	// request reaches the filleServer handler
-	mux.Handle("/static/", http.StripPrefix("/static",
-		fileServer))
-
 	log.Printf("Starting server on %s", *addr)
-	err := http.ListenAndServe(*addr, mux)
+	err := http.ListenAndServe(*addr, app.Routes())
 	log.Fatal(err)
 }
