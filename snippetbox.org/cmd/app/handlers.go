@@ -2,46 +2,18 @@ package main
 
 import (
 	"fmt"
-	"html/template"
-	"log"
 	"net/http"
-	"path/filepath"
 	"strconv"
 )
 
 // Home handler
 func (app *App) Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
-		http.NotFound(w, r)
+		app.NotFound(w)
 		return
 	}
 
-	// Initialize a slice containing the paths to the two files.
-	// Home handler function is a method against App, so we can access
-	// its fields
-	files := []string{
-		filepath.Join(app.HTMLDIR, "base.html"),
-		filepath.Join(app.HTMLDIR, "home.page.html"),
-	}
-
-	// use the templates.ParseFiles() function to read the file and store the
-	// templates in a template set.
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		log.Println(err.Error())
-		http.Error(w, "Internal Server Error", 500)
-		return
-	}
-
-	// Use the ExecuteTemplate() method to execute the base template and
-	// write its content to our ResponseWriter.
-	// The last parameter to ExecuteTemplate represents any
-	// dynamic data that we want to pass in which for now we will leave as nil.
-	err = ts.ExecuteTemplate(w, "base", nil)
-	if err != nil {
-		log.Println(err)
-		http.Error(w, "Internal Server Error", 500)
-	}
+	app.RenderHTML(w, "home.page.html")
 }
 
 // ShowSnippet Handler function
@@ -52,7 +24,7 @@ func (app *App) ShowSnippet(w http.ResponseWriter, r *http.Request) {
 	// if id can't be converted to an integer or the value is less than 1
 	// we return a 404
 	if err != nil || id < 1 {
-		http.NotFound(w, r)
+		app.NotFound(w)
 		return
 	}
 
