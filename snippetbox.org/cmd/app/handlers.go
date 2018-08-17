@@ -1,11 +1,11 @@
 package main
 
 import (
-	"path/filepath"
 	"fmt"
 	"html/template"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 )
 
@@ -17,11 +17,11 @@ func (app *App) Home(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Initialize a slice containing the paths to the two files.
-	// Home handler function is a method against App, so we can access 
+	// Home handler function is a method against App, so we can access
 	// its fields
 	files := []string{
 		filepath.Join(app.HTMLDIR, "base.html"),
-		filepath.Join(app.HTMLDIR, "home.page.html")
+		filepath.Join(app.HTMLDIR, "home.page.html"),
 	}
 
 	// use the templates.ParseFiles() function to read the file and store the
