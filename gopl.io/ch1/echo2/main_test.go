@@ -14,7 +14,7 @@ func TestEcho(t *testing.T) {
 
 	buffer := &bytes.Buffer{}
 
-	Echo(bufffer, args)
+	Echo(buffer, args)
 
 	got := buffer.String()
 	want := "Hello World\n"
