@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"os"
 )
 
 // Echo function prints its command line arguments
@@ -16,4 +17,5 @@ func Echo(w io.Writer, args []string) {
 }
 
 func main() {
+	Echo(os.Stdout, os.Args)
 }
