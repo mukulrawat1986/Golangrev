@@ -9,3 +9,4 @@ ModernGo/note.txt
 .vscode
 *.txt
 note.txt
+.DS_STORE
