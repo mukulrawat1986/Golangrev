@@ -30,6 +30,8 @@ func f() *int {
 }
 
 func playIncr() {
+	// By passing a pointer argument to a function, it becomes possible for
+	// the function to update the variable that was indirectly passed.
 	v := 1
 	fmt.Println(incr(&v), v)
 	fmt.Println(incr(&v), v)
