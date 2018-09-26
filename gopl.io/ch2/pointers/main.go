@@ -4,6 +4,7 @@ import "fmt"
 
 func main() {
 	returnPointer()
+	playIncr()
 }
 
 func returnPointer() {
@@ -26,4 +27,21 @@ func returnPointer() {
 func f() *int {
 	v := 1
 	return &v
+}
+
+func playIncr() {
+	v := 1
+	fmt.Println(incr(&v), v)
+	fmt.Println(incr(&v), v)
+	fmt.Println(incr(&v), v)
+	fmt.Println(incr(&v), v)
+	fmt.Println(incr(&v), v)
+	fmt.Println(incr(&v), v)
+	fmt.Println(incr(&v), v)
+	fmt.Println(incr(&v), v)
+}
+
+func incr(p *int) int {
+	*p++ // increments what p points to, does not change p
+	return *p
 }
