@@ -6,7 +6,7 @@ import "fmt"
 func main() {
 
 	// array declaration
-	var a [3]int
+	var a [10]int
 
 	// array initialization
 	for i := 0; i < len(a); i++ {
@@ -16,4 +16,14 @@ func main() {
 	// printing the array
 	fmt.Println(a[0])
 	fmt.Println(a[1])
+
+	// print the indices and element
+	for i, v := range a {
+		fmt.Printf("%d %d\n", i, v)
+	}
+
+	// print the elements only
+	for _, v := range a {
+		fmt.Printf("%d\n", v)
+	}
 }
