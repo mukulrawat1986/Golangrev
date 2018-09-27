@@ -26,4 +26,15 @@ func main() {
 	for _, v := range a {
 		fmt.Printf("%d\n", v)
 	}
+
+	// use an array literal to intitialize an arry
+	q := [...]int{1, 2, 3, 4, 5, 6, 7}
+	fmt.Printf("%#v\n", q)
+
+	// another form of initialization using an array literal
+	r := [...]int{99: -1}
+	for i := 0; i < len(r); i++ {
+		fmt.Printf("%d ", r[i])
+	}
+	fmt.Println()
 }
