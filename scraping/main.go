@@ -21,8 +21,8 @@ func postScrape(url string, res *[]string) {
 		title, _ := linkTag.Attr("title")
 		title = strings.Split(strings.TrimSpace(title), " ")[0]
 		if len(title) != 0 && title != "List" {
-			s := fmt.Sprint("\"", title, "\"")
-			*res = append(*res, s)
+			//s := fmt.Sprint("\"", title, "\"")
+			*res = append(*res, title)
 		}
 	})
 	//	fmt.Println(res)
@@ -37,7 +37,22 @@ func main() {
 
 	// sort the slice
 	sort.Strings(res)
-	echo(res)
+	//echo(res)
+
+	// create last names
+	lres := []string{}
+	lastName(res, &lres)
+	echo(lres)
+}
+
+func lastName(res []string, lres *[]string) {
+
+	for _, name := range res {
+		s := fmt.Sprint("\"", name, "sson", "\"")
+		s1 := fmt.Sprint("\"", name, "sdóttir", "\"")
+		*lres = append(*lres, s, s1)
+	}
+
 }
 
 func echo(res []string) {
