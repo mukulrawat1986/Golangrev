@@ -9,8 +9,8 @@ import (
 func Home(w http.ResponseWriter, r *http.Request) {
 	// use request.URL.Path to check whether the request URL path exactly matches '/'
 	if r.URL.Path != "/" {
-		w.WriteHeader(404)
-		w.Write([]byte("Not Found"))
+		// use the http.NotFound() function to send a 404 Not Found response
+		http.NotFound(w, r)
 		return
 	}
 
