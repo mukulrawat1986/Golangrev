@@ -9,3 +9,11 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Write([]byte("Hello from Snippetbox"))
 }
+
+func ShowSnippet(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Display a specific snippet...."))
+}
+
+func NewSnippet(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Display a new snippet form...."))
+}
