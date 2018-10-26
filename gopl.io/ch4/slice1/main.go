@@ -31,7 +31,6 @@ func main() {
 	// common elements
 	for _, s := range summer {
 		for _, q := range Q {
-			if s == q
 		}
 	}
 }
