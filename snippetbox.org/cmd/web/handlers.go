@@ -5,19 +5,22 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 )
 
-func Home(w http.ResponseWriter, r *http.Request) {
+// Home is a method against *App
+func (app *App) Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
 	}
 
-	// Initialize a slice containing the path to the two files
+	// Because the Home handler function is now a method against App, it can access
+	// its fields. So we can build the paths to the HTML template files
 	files := []string{
-		"./ui/html/base.html",
-		"./ui/html/home.page.html",
+		filepath.Join(app.HTMLDir, "base.html"),
+		filepath.Join(app.HTMLDir, "home.page.html"),
 	}
 
 	// use template.ParseFiles() to create a template set
@@ -38,7 +41,8 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func ShowSnippet(w http.ResponseWriter, r *http.Request) {
+// ShowSnippet is a method against *App
+func (app *App) ShowSnippet(w http.ResponseWriter, r *http.Request) {
 	// Extract the value of the id parameter from the query string and try to
 	// convert it to an integer using the strconv.Atoi() function
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
@@ -52,6 +56,7 @@ func ShowSnippet(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Display a specific snippet (ID %d)\n", id)
 }
 
-func NewSnippet(w http.ResponseWriter, _ *http.Request) {
+// NewSnippet is a method against *App
+func (app *App) NewSnippet(w http.ResponseWriter, _ *http.Request) {
 	w.Write([]byte("Display a new snippet form...."))
 }
