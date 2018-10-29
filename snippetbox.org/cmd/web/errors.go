@@ -19,6 +19,6 @@ func (app *App) ClientError(w http.ResponseWriter, status int) {
 }
 
 // NotFound helper is a wrapper around Client Error and returns 404 Not Found response to the User
-func (app *App) NotFound(w http.ResponseWriter, err error) {
+func (app *App) NotFound(w http.ResponseWriter) {
 	app.ClientError(w, http.StatusNotFound)
 }
