@@ -18,7 +18,7 @@ func (app *App) RenderHTML(w http.ResponseWriter, page string) {
 		return
 	}
 
-	err = ts.ExecuteTemplate(w, "base.html", nil)
+	err = ts.ExecuteTemplate(w, "base", nil)
 	if err != nil {
 		app.ServerError(w, err)
 	}
